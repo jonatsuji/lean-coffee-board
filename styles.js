@@ -1,4 +1,5 @@
 import { createGlobalStyle } from "styled-components";
+//import RobotoMono from "./assets/fonts/Roboto_Mono/static/RobotoMono-Regular.ttf";
 
 export const GlobalStyle = createGlobalStyle`
   *,
@@ -12,4 +13,6 @@ export const GlobalStyle = createGlobalStyle`
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica,
       Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
   }
+
+
 `;

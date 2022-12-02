@@ -1,18 +1,25 @@
 import styled from "styled-components";
 import Image from "next/image";
 import deleteButton from "../../assets/images/remove.png";
+import { EditText } from "react-edit-text";
 
-export default function Card({ content, author }) {
+export default function Card({ content, author, onHandleDelete, id }) {
   return (
     <StyledCard>
       <StyledText>
-        <p>{content}</p>
+        <EditText name="content" defaultValue={content} inline />
       </StyledText>
       <StyledAuthor>
-        <p>{author}</p>
+        <EditText name="name" defaultValue={author} inline />
       </StyledAuthor>
       <StyledDeleteButton>
-        <Image src={deleteButton} width={25} height={25} alt="delete-button" />
+        <Image
+          src={deleteButton}
+          width={25}
+          height={25}
+          alt="delete-button"
+          onClick={() => onHandleDelete(id)}
+        />
       </StyledDeleteButton>
     </StyledCard>
   );
@@ -20,8 +27,8 @@ export default function Card({ content, author }) {
 
 const StyledCard = styled.li`
   grid-template-areas:
-    "a a a"
-    "b b c";
+    "a a b"
+    "c c d";
   display: grid;
   align-content: space-evenly;
   align-items: center;
@@ -35,26 +42,52 @@ const StyledCard = styled.li`
   border-radius: 20px;
 `;
 
-const StyledText = styled.p`
+const StyledText = styled.div`
   //border: 1px solid red;
   grid-area: a;
   margin-left: 20px;
   margin-right: 10px;
 `;
 
-const StyledAuthor = styled.p`
+const StyledAuthor = styled.div`
   //border: 1px solid green;
-  grid-area: b;
+  grid-area: c;
   margin-left: 20px;
   color: #d8ac11;
 `;
 
 const StyledDeleteButton = styled.button`
   padding: 0px;
-  grid-area: c;
+  grid-area: d;
   width: 30px;
   height: 30px;
   justify-self: center;
   background-color: transparent;
   border: none;
+
+  display: inline-block;
+  vertical-align: middle;
+  transform: translateZ(0);
+  box-shadow: 0 0 1px rgba(0, 0, 0, 0);
+  backface-visibility: hidden;
+  -moz-osx-font-smoothing: grayscale;
+  transition-duration: 0.3s;
+  transition-property: transform;
+`;
+
+// .hvr-grow:hover,
+// .hvr-grow:focus,
+// .hvr-grow:active {
+//   transform: scale(1.1);
+// }
+
+const StyledEditButton = styled.button`
+  padding: 0px;
+  grid-area: b;
+  width: 30px;
+  height: 30px;
+  justify-self: center;
+  background-color: transparent;
+  border: none;
+  padding-left: 6px;
 `;
